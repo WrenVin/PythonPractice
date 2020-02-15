@@ -13,13 +13,19 @@ class Employee:
         return '{} {}'.format(self.first, self.last)
     
     def apply_raise(self):
-        self.wage = int(self.wage * self.raise_amount)
+        self.wage = int(int(self.wage) * self.raise_amount)
+        
+    @classmethod # This declares this method as a class method
+    def set_raise_amount(cls, amount): #cls is what class we are assigned too
+        cls.raise_amount = amount
     
 
-emp_1 = Employee('Vincent', 'Wren', '1000')
 emp_2 = Employee('Carlos', 'Garica', 5000)#Each unique instance of class, dont pass self
+emp_1 = Employee('Vincent', 'Wren', '1000')
 
-#Employee.fullname(emp_1) # similar to below, but passes instance through generic class, dont use
-emp_2.apply_raise()
-print(emp_2.wage)
+emp_str_1 = 'John-Doe-70000'
+first, last, pay = emp_str_1.split('-')
+emp_3 = Employee(first, last, pay)
+emp_3.apply_raise()
+print(emp_3.wage)
 
